@@ -60,12 +60,10 @@ module ReversiMethods
   end
 
   def turn(board, target_pos, attack_stone_color, direction)
-    #target_posがc1とするとderectionにはRIGHTが入っている attack_stone_colorは黒
     return false if target_pos.out_of_board?
     return false if target_pos.stone_color(board) == attack_stone_color
     return false if target_pos.stone_color(board) == BLANK_CELL
     
-    #next_posはd1,d1は白
     next_pos = target_pos.next_position(direction)
     if (next_pos.stone_color(board) == attack_stone_color) || turn(board, next_pos, attack_stone_color, direction)
       board[target_pos.row][target_pos.col] = attack_stone_color
